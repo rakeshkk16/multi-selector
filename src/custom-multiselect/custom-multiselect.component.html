@@ -1,0 +1,26 @@
+<div>
+    <input type="text" placeholder="Search..." [(ngModel)]="searchText" (ngModelChange)="onSearchChange()"/>
+    @if(isGroupedData){
+        <div *ngFor="let group of filteredData">
+            <h3>{{ group.group }}</h3>
+            <ul>
+              <li *ngFor="let item of group.children">
+                <label>
+                  <input type="checkbox" [checked]="item.selected" (change)="toggleSelection(item)">
+                  {{ item.item_text }}
+                </label>
+              </li>
+            </ul>
+          </div>
+    } @else {
+        <ul>
+            <li *ngFor="let item of filteredData">
+              <label>
+                <input type="checkbox" [checked]="item.selected" (change)="toggleSelection(item)">
+                {{ item.item_text }}
+              </label>
+            </li>
+        </ul>
+    }
+  </div>
+  
